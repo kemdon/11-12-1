@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { courses, courseTracks, supportItems } from '../data/site';
+---
+
+<Layout title="课程中心" description="商盛源课程体系：游学课、落地课、进阶课、主题课，代表课程含《文化落在标准上》《服务力就是销售力》《文化就是生产力》等。">
+
+  <PageHero
+    kicker="COURSE CENTER"
+    title="课程中心：按学习阶段匹配课程"
+    body="围绕不同企业、不同阶段的学习需求，商盛源研发了游学课、落地课、进阶课、主题课等系列课程，并配套课后辅导与入企支持。"
+    crumb="课程中心"
+    image="/images/course-hall.webp"
+  >
+    <a class="btn btn--gold" href="/contact">课程咨询 →</a>
+    <a class="btn btn--outline" href="/schedule">查看课程排期</a>
+  </PageHero>
+
+  <!-- 四类课程体系 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="FOUR TRACKS" title="四类课程体系" body="先在游学课建立现场判断，再用落地课把共识拆成动作，进阶课与主题课承接更深的机制问题。" />
+      <div class="grid grid--4">
+        {courseTracks.map((t, i) => (
+          <article class="track-card reveal">
+            <span class="track-card__no num">0{i + 1}</span>
+            <h3>{t.name}</h3>
+            <p>{t.desc}</p>
+            <div class="track-card__line"></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 代表课程 -->
+  <section class="section section--warm">
+    <div class="container">
+      <SectionHead kicker="SIGNATURE COURSES" title="代表课程介绍" body="课程围绕服务标准、客诉闭环、文化机制与经营转化展开，具体内容以当期课程方案为准。" />
+      <div class="course-grid">
+        {courses.map((c) => (
+          <article class="course-card reveal">
+            <div class="course-card__media"><img src={c.image} alt={c.alt} loading="lazy" /></div>
+            <div class="course-card__body">
+              <span class="tag">{c.type}</span>
+              <h3>{c.title}</h3>
+              <p>{c.body}</p>
+              <div class="course-card__tags">{c.tags.map((t) => <span>{t}</span>)}</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 课后支持 -->
+  <section class="section">
+    <div class="container">
+      <div class="support-grid">
+        <div class="support-text reveal">
+          <SectionHead kicker="AFTER CLASS" title="课程之外，落地才刚开始" align="left" />
+          <p class="lead">「真落地」不是一句口号，而是课后仍有人陪着把共识推进到岗位动作。</p>
+          <div class="support-list">
+            {supportItems.map((s, i) => (
+              <div class="support-item">
+                <span class="num">0{i + 1}</span>
+                <div><h3>{s.title}</h3><p>{s.body}</p></div>
+              </div>
+            ))}
+          </div>
+          <a class="btn btn--navy" href="/schedule">了解课程排期 →</a>
+        </div>
+        <div class="support-media reveal">
+          <img src="/images/workshop.webp" alt="企业管理者围坐长桌做复盘共创，桌面有便签与资料" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="不确定该从哪门课开始？" body="把团队当前最想解决的问题告诉我们，先一起判断适合的学习阶段与课程类型。" />
+</Layout>
+
+<style>
+  .track-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 24px 32px; overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+  .track-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .track-card__no { display: block; font-size: 34px; color: var(--gold-light); line-height: 1; margin-bottom: 16px; }
+  .track-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .track-card p { font-size: 14px; line-height: 1.9; }
+  .track-card__line { position: absolute; left: 0; bottom: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); }
+
+  .course-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+  .course-card { display: grid; grid-template-columns: 40% 60%; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+  .course-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .course-card__media { overflow: hidden; }
+  .course-card__media img { width: 100%; height: 100%; min-height: 250px; object-fit: cover; }
+  .course-card__body { padding: 28px 26px 30px; }
+  .course-card__body h3 { font-size: 20px; margin: 14px 0 12px; line-height: 1.5; }
+  .course-card__body > p { font-size: 14.2px; line-height: 1.9; }
+  .course-card__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .course-card__tags span { font-size: 12px; color: var(--ink-3); border: 1px solid var(--line); border-radius: 100px; padding: 4px 11px; }
+
+  .support-grid { display: grid; grid-template-columns: 1fr .92fr; gap: 68px; align-items: center; }
+  .support-text :global(.section-head) { margin-bottom: 20px; }
+  .support-list { margin: 24px 0 30px; }
+  .support-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .support-item:last-child { border-bottom: 0; }
+  .support-item > span { color: var(--gold-deep); font-size: 24px; flex: none; line-height: 1.3; width: 40px; }
+  .support-item h3 { font-size: 17.5px; margin-bottom: 5px; }
+  .support-item p { font-size: 14px; line-height: 1.85; }
+  .support-media img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+
+  @media (max-width: 1024px) {
+    .support-grid { gap: 40px; }
+    .course-card { grid-template-columns: 36% 64%; }
+  }
+  @media (max-width: 900px) {
+    .course-grid { grid-template-columns: minmax(0, 1fr); }
+    .support-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+    .support-media { max-width: 620px; }
+  }
+  @media (max-width: 600px) {
+    .course-card { grid-template-columns: minmax(0, 1fr); }
+    .course-card__media img { min-height: 0; aspect-ratio: 16 / 9; }
+  }
+</style>

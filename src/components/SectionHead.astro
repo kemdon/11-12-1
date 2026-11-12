@@ -1,0 +1,15 @@
+---
+export interface Props {
+  kicker?: string;
+  title: string;
+  body?: string;
+  align?: 'center' | 'left';
+}
+const { kicker, title, body, align = 'center' } = Astro.props;
+---
+
+<div class:list={['section-head', { 'section-head--left': align === 'left' }]}>
+  {kicker && <span class="kicker">{kicker}</span>}
+  <h2>{title}</h2>
+  {body && <p>{body}</p>}
+</div>

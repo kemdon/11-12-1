@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const programs = [
+  { no: '01', title: '标杆企业现场考察', body: '走进胖东来、巴奴等河南标杆企业现场，观察门店动线、服务标准与顾客体验的真实呈现。', image: '/images/tour.webp', alt: '企业参访团队沿商业步行街行走交流' },
+  { no: '02', title: '主题参访与专题交流', body: '围绕服务、客诉、标准化等具体主题安排观察任务与专题交流，把现场变成可讨论的案例。', image: '/images/observe.webp', alt: '参访者在卖场客服台与价签区域观察记录' },
+  { no: '03', title: '团队定制学习行程', body: '结合团队人数、行业背景与当前问题沟通学习重点，由课程助教确认行程与课程安排。', image: '/images/intro.webp', alt: '会议室内摆放着资料与笔记本' },
+];
+
+const flow = [
+  { no: '01', title: '游学前', items: ['确认团队构成与学习目标', '分角色准备观察任务与问题清单', '由课程助教确认行程、资料与参会须知'] },
+  { no: '02', title: '现场流程', items: ['按主题走访门店动线与服务现场', '带着问题观察岗位协同与顾客体验', '结合专题交流还原做法与取舍'] },
+  { no: '03', title: '游学后复盘', items: ['团队共创行动清单与责任分工', '把现场所见对照自己企业的现状', '明确回去后的复盘方向与节奏'] },
+  { no: '04', title: '组织与保障', items: ['行程组织、资料准备与现场协同', '会务团队统一保障学习秩序', '课后可衔接线上辅导与入企辅导'] },
+];
+
+const observePoints = [
+  '门店动线：顾客从进门到离开，经过哪些服务触点',
+  '服务标准：提示卡、价签、台面与岗位动作如何一致',
+  '岗位协同：一线员工遇到问题时，谁来判断、谁来兜底',
+  '顾客体验：细节背后的判断标准，而不是细节本身',
+];
+
+const faqGroups = [
+  { tag: '关于行程', q: '游学包含哪些环节？', a: '以现场观察、专题交流与团队复盘为主，具体行程模块、时长与安排由课程助教在确认需求后给出。' },
+  { tag: '关于团队', q: '多少人可以组团？', a: '团队人数、岗位构成与行业背景是匹配学习方案的重要依据，建议在首次沟通时一并说明，由课程助教评估。' },
+  { tag: '关于费用', q: '费用包含什么？', a: '费用明细、包含项目与不包含项目以当期方案与报名说明为准，官网不发布未经确认的价格。' },
+  { tag: '关于落地', q: '游学结束后还有支持吗？', a: '可衔接每周三线上辅导课与入企辅导，帮助团队把现场共识推进到岗位动作。' },
+];
+---
+
+<Layout title="游学考察" description="商盛源游学考察：走进胖东来、巴奴等河南标杆企业现场，含游学前准备、现场流程、游学后复盘与组织保障。">
+
+  <PageHero
+    kicker="FIELD VISIT"
+    title="游学考察：在现场建立具体判断"
+    body="适合企业团队现场观察标杆门店动线与服务标准。在看与问之间，把「好服务」从一句感受，变成可以带回去讨论的具体细节。"
+    crumb="游学考察"
+    image="/images/tour.webp"
+  >
+    <a class="btn btn--gold" href="/contact">游学咨询 →</a>
+    <a class="btn btn--outline" href="#flow">查看游学流程</a>
+  </PageHero>
+
+  <!-- 游学项目 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="PROGRAMS" title="游学项目" body="围绕不同团队的学习目标，安排不同深度的现场学习。" />
+      <div class="grid grid--3">
+        {programs.map((p) => (
+          <article class="card reveal">
+            <div class="card__media"><img src={p.image} alt={p.alt} loading="lazy" /></div>
+            <div class="card__body">
+              <span class="program-no num">{p.no}</span>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 游学流程 -->
+  <section class="section section--warm" id="flow">
+    <div class="container">
+      <SectionHead kicker="HOW IT WORKS" title="游学流程：从出发到复盘" body="游学前准备、现场流程、游学后复盘，以及贯穿全程的组织与保障。" />
+      <div class="flow-grid">
+        {flow.map((f) => (
+          <article class="flow-card reveal">
+            <div class="flow-card__no num">{f.no}</div>
+            <h3>{f.title}</h3>
+            <ul>{f.items.map((i) => <li>{i}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 现场看什么 -->
+  <section class="section">
+    <div class="container">
+      <div class="observe-grid">
+        <div class="observe-media reveal">
+          <img src="/images/case-service.webp" alt="超市服务台的不锈钢台面、单据与价签特写" loading="lazy" />
+          <div class="observe-caption">看细节，更看细节背后的标准</div>
+        </div>
+        <div class="observe-text reveal">
+          <SectionHead kicker="WHAT TO OBSERVE" title="到了现场，究竟看什么？" align="left" />
+          <p class="lead">同样是逛一家店，带着问题的人和走马观花的人，看到的是两个完全不同的现场。</p>
+          <ul class="observe-list">
+            {observePoints.map((t, i) => (
+              <li><span class="num">0{i + 1}</span><p>{t}</p></li>
+            ))}
+          </ul>
+          <a class="btn btn--navy" href="/yanxue">了解系统研学 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见问题归类 -->
+  <section class="section section--blue">
+    <div class="container">
+      <SectionHead kicker="FAQ" title="游学常见问题归类" body="以下为常见咨询方向，具体安排以课程助教确认为准。" />
+      <div class="faq-grid">
+        {faqGroups.map((f) => (
+          <article class="faq-card reveal">
+            <span class="tag tag--blue">{f.tag}</span>
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="沟通团队需求，再确认游学安排" body="告诉我们团队人数、行业与最想解决的问题，先判断适合现场考察还是系统研学。" secondaryLabel="查看课程中心" />
+</Layout>
+
+<style>
+  .program-no { display: block; font-size: 30px; color: var(--gold-light); line-height: 1; margin-bottom: 12px; }
+  .card__body h3 { margin-bottom: 10px; }
+
+  .flow-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .flow-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 24px 32px; }
+  .flow-card::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-pale)); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .flow-card__no { font-size: 32px; color: var(--gold-light); line-height: 1; margin-bottom: 14px; }
+  .flow-card h3 { font-size: 19px; margin-bottom: 16px; }
+  .flow-card li { position: relative; padding-left: 18px; margin-bottom: 12px; font-size: 13.8px; line-height: 1.85; color: var(--ink-2); }
+  .flow-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .observe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .observe-media { position: relative; }
+  .observe-media img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+  .observe-caption { position: absolute; right: 0; bottom: -18px; background: var(--navy-900); color: #fff; padding: 12px 22px; font-size: 13px; border-radius: var(--radius) 0 0 0; }
+  .observe-text :global(.section-head) { margin-bottom: 20px; }
+  .observe-list { margin: 24px 0 30px; }
+  .observe-list li { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .observe-list li > span { color: var(--gold-deep); font-size: 20px; flex: none; line-height: 1.5; }
+  .observe-list p { font-size: 15px; line-height: 1.8; }
+
+  .faq-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .faq-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 26px 30px; }
+  .faq-card h3 { font-size: 18px; margin: 14px 0 10px; }
+  .faq-card p { font-size: 14.5px; line-height: 1.9; }
+
+  @media (max-width: 1024px) {
+    .flow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 900px) {
+    .observe-grid { grid-template-columns: minmax(0, 1fr); gap: 50px; }
+    .observe-media { max-width: 620px; }
+  }
+  @media (max-width: 768px) {
+    .faq-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .flow-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

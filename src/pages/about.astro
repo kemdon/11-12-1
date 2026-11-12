@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, stats, timeline, news } from '../data/site';
+---
+
+<Layout title="商盛源介绍" description={`${site.fullName}隶属${site.group}，2016 年启动胖东来游学项目，近 10 年聚焦落地，形成游学课、落地课、进阶课、主题课完整课程体系。`}>
+
+  <PageHero
+    kicker="ABOUT SHANGSHENGYUAN"
+    title="商盛源 · 真落地"
+    body="河南商盛源文化咨询有限公司隶属太和文旅集团，2016 年启动胖东来游学项目，是首家组织胖东来游学的企业。近 10 年聚焦「落地」，陪伴企业在真学习、真转化、真落地中走向幸福经营。"
+    crumb="商盛源介绍"
+    image="/images/intro.webp"
+  >
+    <a class="btn btn--gold" href="#intro">了解我们 →</a>
+    <a class="btn btn--outline" href="/contact">研学咨询</a>
+  </PageHero>
+
+  <!-- 企业介绍 -->
+  <section class="section" id="intro">
+    <div class="container about-grid">
+      <div class="reveal">
+        <SectionHead kicker="WHO WE ARE" title={site.fullName} align="left" />
+        <div class="prose">
+          <p>{site.description}</p>
+          <p>
+            作为首家组织胖东来游学的企业，商盛源自 2016 年启动项目以来，围绕不同企业的学习需求，
+            深度研发了游学课、落地课、进阶课、主题课等系列课程，并助力众多企业走进胖东来、巴奴等河南标杆企业，
+            在游学中看见文化的力量，将文化转化为生产力，实现幸福经营。
+          </p>
+          <h3>我们一直聚焦的三件事</h3>
+          <ul>
+            <li>让文化与业务不再「两层皮」，把理念落到岗位动作</li>
+            <li>让客诉不再造成顾客与企业两伤，形成可复用的判断与闭环</li>
+            <li>让标准不再「有制度不落地」，回到发心重新对齐共识</li>
+          </ul>
+          <p>
+            未来，商盛源将继续带领企业家们走进更多知名企业，开启文化探索之旅，
+            帮助更多企业融入先进文化，实现幸福经营。
+          </p>
+        </div>
+      </div>
+      <div class="about-media reveal">
+        <img src="/images/intro.webp" alt="明亮的企业会议室内摆放着资料与笔记本" loading="lazy" />
+        <div class="about-quote">
+          <span class="num">“</span>
+          <p>文化就是生产力<br />落地才是真游学</p>
+          <small>{site.belief}</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数据介绍 -->
+  <section class="section section--navy data-sec">
+    <div class="container">
+      <SectionHead kicker="DATA PROOF" title="用公开记录说明我们走过的路" body="以下数据来自商盛源公众号公开简介与公开媒体报道，非实时统计。" />
+      <div class="data-grid">
+        {stats.map((item) => (
+          <div class="data-item reveal">
+            <div class="data-item__value num">{item.value}</div>
+            <div class="data-item__label">{item.label}</div>
+            <div class="data-item__detail">{item.detail}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 发展历程 -->
+  <section class="section section--warm">
+    <div class="container">
+      <SectionHead kicker="OUR JOURNEY" title="成长时间轴" body="从「看见文化的力量」到「文化就是生产力」，再到成为落地陪跑者与文化共建者。" />
+      <div class="timeline">
+        {timeline.map((item) => (
+          <div class="timeline__row reveal">
+            <div class="timeline__year num">{item.year}</div>
+            <div class="timeline__dot" aria-hidden="true"></div>
+            <div class="timeline__content">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 最近动态 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="IN THE NEWS" title="最近动态与媒体报道" body="公开报道中关于商盛源与胖东来游学的记录。" />
+      <div class="grid grid--3">
+        {news.map((item) => (
+          <article class="card reveal">
+            <div class="card__body">
+              <div class="news-meta"><span class="num">{item.date}</span><span class="tag tag--blue">{item.source}</span></div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="source-note">{site.sourceNote}；具体业务信息以课程助教确认为准。</p>
+    </div>
+  </section>
+
+  <CtaBand title="想更了解我们的课程与落地方式？" body="把团队人数、所属行业和当前问题告诉我们，先判断适合哪条学习路径。" />
+</Layout>
+
+<style>
+  .about-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 68px; align-items: start; }
+  .about-grid :global(.section-head) { margin-bottom: 24px; }
+  .about-media { position: relative; }
+  .about-media img { width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+  .about-quote {
+    position: absolute; left: -28px; bottom: -30px;
+    background: var(--navy-900); color: #fff;
+    padding: 22px 28px 24px; max-width: 270px;
+    border-left: 4px solid var(--gold);
+    box-shadow: var(--shadow-md);
+  }
+  .about-quote .num { color: var(--gold); font-size: 38px; line-height: .7; display: block; }
+  .about-quote p { color: #fff; font-size: 18px; font-weight: 700; line-height: 1.6; margin: 10px 0 12px; }
+  .about-quote small { color: rgba(255,255,255,.6); font-size: 11.5px; line-height: 1.7; display: block; }
+
+  .data-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+  .data-item { padding: 28px 24px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-lg); }
+  .data-item__value { color: var(--gold-light); font-size: clamp(1.9rem, 3vw, 2.5rem); line-height: 1.1; }
+  .data-item__label { color: #fff; font-size: 14.5px; font-weight: 600; margin-top: 12px; }
+  .data-item__detail { color: rgba(255,255,255,.58); font-size: 12.5px; margin-top: 6px; line-height: 1.7; }
+
+  .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+  .timeline::before { content: ""; position: absolute; left: 172px; top: 12px; bottom: 12px; width: 1px; background: linear-gradient(180deg, var(--gold), var(--line)); }
+  .timeline__row { display: grid; grid-template-columns: 150px 24px 1fr; gap: 20px; align-items: start; padding: 18px 0; }
+  .timeline__year { color: var(--gold-deep); font-size: 19px; text-align: right; padding-top: 2px; }
+  .timeline__dot { position: relative; z-index: 1; width: 11px; height: 11px; border-radius: 50%; background: var(--gold); border: 3px solid var(--paper-warm); box-shadow: 0 0 0 1px var(--gold); margin-top: 7px; }
+  .timeline__content h3 { font-size: 19px; margin-bottom: 7px; }
+  .timeline__content p { font-size: 14.5px; line-height: 1.9; }
+
+  .news-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .news-meta .num { color: var(--gold-deep); font-size: 16px; }
+  .card__body h3 { font-size: 18px; line-height: 1.6; margin-bottom: 10px; }
+  .source-note { text-align: center; margin-top: 30px; font-size: 12.5px; color: var(--ink-3); }
+
+  @media (max-width: 1024px) {
+    .data-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: minmax(0, 1fr); gap: 54px; }
+    .about-media { max-width: 620px; }
+    .about-quote { left: 12px; bottom: -24px; }
+    .timeline::before { left: 6px; }
+    .timeline__row { grid-template-columns: 22px 1fr; gap: 16px; }
+    .timeline__year { grid-column: 2; text-align: left; font-size: 16px; }
+    .timeline__dot { grid-column: 1; grid-row: 1 / 3; }
+    .timeline__content { grid-column: 2; }
+  }
+  @media (max-width: 480px) {
+    .data-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

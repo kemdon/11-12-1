@@ -1,0 +1,78 @@
+---
+import '../styles.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../data/site';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = site.description,
+  noindex = false,
+  ogImage = '/images/hero.webp',
+} = Astro.props;
+
+const documentTitle = title ? `${title} | ${site.name}` : `${site.name} · 真落地｜胖东来研学与企业游学`;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : '';
+const absoluteOg = Astro.site ? new URL(ogImage, Astro.site).toString() : ogImage;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+		<meta name="theme-color" content="#0e2c4d" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{documentTitle}</title>
+		{canonical && <link rel="canonical" href={canonical} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={documentTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={absoluteOg} />
+		{canonical && <meta property="og:url" content={canonical} />}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={documentTitle} />
+		<meta name="twitter:description" content={description} />
+		<noscript>
+			<style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+		</noscript>
+	</head>
+	<body>
+		<SiteHeader />
+		<main>
+			<slot />
+		</main>
+		<SiteFooter />
+		<script>
+			(() => {
+				const elements = document.querySelectorAll('.reveal');
+				if (!('IntersectionObserver' in window)) return;
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('is-entering');
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{ threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+				);
+				elements.forEach((el, index) => {
+					(el as HTMLElement).style.animationDelay = `${(index % 4) * 70}ms`;
+					observer.observe(el);
+				});
+			})();
+		</script>
+	</body>
+</html>

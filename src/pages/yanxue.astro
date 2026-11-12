@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { loopSteps, methods, courseTracks } from '../data/site';
+
+const learnings = [
+  { no: '01', title: '服务标准', body: '从温馨提醒、动线设计到现场整洁，看服务如何被拆成可复制的标准与岗位动作。' },
+  { no: '02', title: '客诉处理', body: '看一次投诉如何被接住、被记录、被闭环，理解判断标准与授权边界背后的机制。' },
+  { no: '03', title: '文化落地', body: '文化不是口号，要看员工状态、制度一致性和管理动作是否互相印证。' },
+  { no: '04', title: '组织机制', body: '从岗位协同、人才培养到标准化推进，理解「有标准能落地」靠什么支撑。' },
+];
+
+const phases = [
+  { phase: '研学前', title: '把问题写清楚', items: ['明确行业背景、团队角色与本次最想解决的一个经营问题', '分角色：老板、店长、运营各带一份观察任务', '把现状与差距列成问题清单，带着清单出发'], no: '01' },
+  { phase: '研学中', title: '现场取证 + 方法拆解', items: ['用「探店四步骤」观察动线、服务标准、岗位协同与顾客体验', '用「四步反省法」把现场细节转成对自己企业的对照', '在专题授课中还原标准与文化背后的做法和取舍'], no: '02' },
+  { phase: '研学后', title: '把方法带回团队', items: ['用「落地四步曲」沉淀行动清单、责任分工与复盘方向', '每周三线上辅导课持续跟进', '结合企业场景开展入企辅导'], no: '03' },
+];
+
+const fit = [
+  '带着具体经营问题的企业创始人与高管团队',
+  '门店负责人、店长与运营管理者',
+  '协会、商会、商学院等组织的管理团队',
+  '正在推动服务标准化或文化落地的企业',
+];
+const thinkTwice = [
+  '本次只想打卡观光、不打算深入讨论问题',
+  '暂时没有明确想解决的经营问题',
+  '回去后暂不打算推动任何内部改变',
+  '希望直接照搬另一家企业的制度与做法',
+];
+
+const takeaways = [
+  { title: '一份行动清单', body: '结合企业自身场景，写清要做什么、谁负责、什么时候复盘。' },
+  { title: '一套复盘方向', body: '把现场对照出的差距，转成团队可以持续讨论的议题。' },
+  { title: '一段持续陪跑', body: '每周三线上辅导课与入企辅导，让学习不止于两天现场。' },
+];
+---
+
+<Layout title="胖东来研学" description="商盛源胖东来研学：研学前目标澄清、研学中现场取证与方法拆解、研学后行动共创，配套探店四步骤、四步反省法、落地四步曲。">
+
+  <PageHero
+    kicker="STUDY PROGRAM"
+    title="胖东来研学：带着问题到现场"
+    body="不是走马观花地看一遍，而是先明确要解决的问题，再到许昌现场验证方法，最后沉淀为回去能执行的行动清单。"
+    crumb="胖东来研学"
+    image="/images/observe.webp"
+  >
+    <a class="btn btn--gold" href="/contact">研学咨询 →</a>
+    <a class="btn btn--outline" href="#process">查看研学流程</a>
+  </PageHero>
+
+  <!-- 能学到什么 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="WHAT YOU LEARN" title="胖东来研学能学到什么" body="围绕服务标准、客诉处理、文化落地与组织机制四条主线，把现场所见转成自己企业的对照。" />
+      <div class="grid grid--4">
+        {learnings.map((item) => (
+          <article class="learn-card reveal">
+            <div class="learn-card__no num">{item.no}</div>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 研学流程 -->
+  <section class="section section--warm" id="process">
+    <div class="container">
+      <SectionHead kicker="BEFORE · DURING · AFTER" title="研学流程：研学前、研学中、研学后" body="一个完整的学习闭环，而不是一次两天行程。" />
+      <div class="phase-grid">
+        {phases.map((p) => (
+          <article class="phase-card reveal">
+            <div class="phase-card__head">
+              <span class="phase-card__no num">{p.no}</span>
+              <span class="phase-card__phase">{p.phase}</span>
+            </div>
+            <h3>{p.title}</h3>
+            <ul>{p.items.map((i) => <li>{i}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+      <div class="method-strip reveal">
+        <span>贯穿全程的方法体系</span>
+        {methods.map((m) => <em>{m.name}</em>)}
+      </div>
+      <div class="process-media reveal">
+        <img src="/images/classroom.webp" alt="培训教室内讲师对白板讲解，学员记录" loading="lazy" />
+        <div class="process-media__text">
+          <h3>专题授课与现场取证相互印证</h3>
+          <p>现场负责「看见」，课堂负责「拆开」，复盘负责「带回去」。三者连起来，才是一次完整的研学。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 适合哪些人 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="IS IT FOR YOU" title="适合哪些人来学习？哪些情况建议先沟通" body="先判断学习目标，再决定是否成行，比先定行程更重要。" />
+      <div class="fit-grid">
+        <div class="fit-panel fit-panel--yes reveal">
+          <h3><span>✓</span> 适合这样的团队</h3>
+          <ul>{fit.map((t) => <li>{t}</li>)}</ul>
+        </div>
+        <div class="fit-panel fit-panel--think reveal">
+          <h3><span>!</span> 建议先沟通再决定</h3>
+          <ul>{thinkTwice.map((t) => <li>{t}</li>)}</ul>
+          <p>如果属于以上情况，建议先与课程助教沟通学习目标，避免把研学变成一次「看过就算」的出行。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 课程匹配与带教确认 -->
+  <section class="section section--blue">
+    <div class="container">
+      <SectionHead kicker="COURSE MATCHING" title="讲师身份确认与课程匹配" body="按团队目标与学习阶段匹配课程，具体内容与带教安排以课程助教确认为准。" />
+      <div class="grid grid--4">
+        {courseTracks.map((t, i) => (
+          <article class="track-card reveal">
+            <span class="track-card__no num">0{i + 1}</span>
+            <h3>{t.name}</h3>
+            <p>{t.desc}</p>
+          </article>
+        ))}
+      </div>
+      <div class="confirm-note reveal">
+        <strong>关于带教安排</strong>
+        <p>课程内容、带教分工、行程明细与班期以课程助教最终确认为准；团队可在咨询时提出希望重点覆盖的主题，便于提前匹配。商盛源官网不发布未经确认的讲师履历与课程承诺。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 能带走什么 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="TAKEAWAYS" title="研学后能带走什么" body="学完能用，不是听过就忘。" />
+      <div class="grid grid--3">
+        {takeaways.map((t, i) => (
+          <article class="take-card reveal">
+            <span class="take-card__no num">0{i + 1}</span>
+            <h3>{t.title}</h3>
+            <p>{t.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="先说清团队的问题，我们再一起定研学方案" body="沟通团队人数、行业与当前最想解决的问题，判断适合研学、游学考察还是落地课程。" />
+</Layout>
+
+<style>
+  .learn-card { background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: var(--radius-lg); padding: 30px 24px 32px; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+  .learn-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .learn-card__no { font-size: 34px; color: var(--gold-light); line-height: 1; margin-bottom: 16px; }
+  .learn-card h3 { font-size: 19px; margin-bottom: 10px; }
+  .learn-card p { font-size: 14px; line-height: 1.9; }
+
+  .phase-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .phase-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 26px 32px; }
+  .phase-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .phase-card__no { font-size: 30px; color: var(--gold-light); line-height: 1; }
+  .phase-card__phase { color: var(--gold-deep); font-size: 12.5px; font-weight: 700; letter-spacing: .08em; padding: 5px 12px; background: var(--gold-pale); border-radius: 100px; }
+  .phase-card h3 { font-size: 20px; margin-bottom: 16px; }
+  .phase-card li { position: relative; padding-left: 20px; margin-bottom: 12px; font-size: 14px; line-height: 1.85; color: var(--ink-2); }
+  .phase-card li::before { content: ""; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .method-strip { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; padding: 20px 26px; background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; }
+  .method-strip > span { color: var(--ink-3); font-size: 13px; font-weight: 700; }
+  .method-strip em { font-style: normal; font-size: 14px; font-weight: 700; color: var(--navy-900); padding: 6px 14px; border: 1px solid var(--line); border-radius: 100px; }
+
+  .process-media { display: grid; grid-template-columns: 1.1fr .9fr; gap: 0; margin-top: 40px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+  .process-media img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; }
+  .process-media__text { background: var(--navy-900); padding: 42px 38px; display: flex; flex-direction: column; justify-content: center; }
+  .process-media__text h3 { color: #fff; font-size: 22px; margin-bottom: 14px; }
+  .process-media__text p { color: rgba(255,255,255,.75); font-size: 14.5px; line-height: 2; }
+
+  .fit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+  .fit-panel { border-radius: var(--radius-lg); padding: 34px 32px 36px; border: 1px solid var(--line); }
+  .fit-panel--yes { background: var(--paper-blue); }
+  .fit-panel--think { background: var(--paper-warm); }
+  .fit-panel h3 { display: flex; align-items: center; gap: 12px; font-size: 20px; margin-bottom: 20px; }
+  .fit-panel h3 span { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; font-size: 16px; color: #fff; background: var(--navy-700); }
+  .fit-panel--think h3 span { background: var(--gold-deep); }
+  .fit-panel li { position: relative; padding-left: 22px; margin-bottom: 14px; font-size: 15px; line-height: 1.8; color: var(--ink-2); }
+  .fit-panel li::before { content: ""; position: absolute; left: 2px; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+  .fit-panel > p { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13.5px; line-height: 1.85; }
+
+  .track-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 24px 30px; }
+  .track-card__no { display: block; font-size: 30px; color: var(--gold-light); line-height: 1; margin-bottom: 14px; }
+  .track-card h3 { font-size: 19px; margin-bottom: 10px; }
+  .track-card p { font-size: 14px; line-height: 1.9; }
+  .confirm-note { margin-top: 28px; padding: 24px 28px; background: #fff; border-left: 3px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; }
+  .confirm-note strong { display: block; color: var(--navy-900); font-size: 16px; margin-bottom: 8px; }
+  .confirm-note p { font-size: 14px; line-height: 1.9; }
+
+  .take-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 28px 34px; }
+  .take-card__no { display: block; font-size: 36px; color: var(--gold-light); line-height: 1; margin-bottom: 16px; }
+  .take-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .take-card p { font-size: 14.5px; line-height: 1.9; }
+
+  @media (max-width: 1024px) {
+    .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 768px) {
+    .phase-grid, .fit-grid, .process-media { grid-template-columns: minmax(0, 1fr); }
+    .process-media img { min-height: 0; aspect-ratio: 16 / 9; }
+    .process-media__text { padding: 30px 26px; }
+  }
+  @media (max-width: 480px) {
+    .grid--4 { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

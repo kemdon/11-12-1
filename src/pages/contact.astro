@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { consultSteps, site } from '../data/site';
+
+const prepare = [
+  { title: '团队情况', body: '团队人数、岗位构成、所属行业与当前经营阶段。' },
+  { title: '一个问题', body: '本次最想解决的一个具体经营问题，越具体越好。' },
+  { title: '时间与偏好', body: '可出行的时间范围、希望重点覆盖的主题。' },
+];
+
+const entries = [
+  { title: '了解课程体系', body: '先看游学课、落地课、进阶课、主题课分别解决什么问题。', href: '/courses', label: '课程中心 →' },
+  { title: '确认班期安排', body: '了解班期如何确认，以及咨询到成行的完整流程。', href: '/schedule', label: '课程排期 →' },
+  { title: '先看研学指南', body: '出发前的定目标、分角色、备问题，以及常见避坑提醒。', href: '/guide', label: '研学指南 →' },
+];
+---
+
+<Layout title="咨询沟通" description="联系商盛源：关注微信公众号「商盛源」后台留言，或联系课程助教沟通团队人数、行业与当前问题。">
+
+  <PageHero
+    kicker="GET IN TOUCH"
+    title="先确认你的团队适合哪种方案"
+    body="提交团队人数、行业和当前最想解决的问题，我们先一起判断适合研学、游学考察，还是落地课与定制课程。"
+    crumb="咨询沟通"
+    image="/images/cta-wide.webp"
+  >
+    <a class="btn btn--gold" href="#wechat">如何联系我们 →</a>
+    <a class="btn btn--outline" href="/courses">查看课程中心</a>
+  </PageHero>
+
+  <!-- 沟通流程 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="HOW IT WORKS" title="从一次沟通开始" body="不急着定行程，先把目标说清楚。" />
+      <div class="steps-grid">
+        {consultSteps.map((s) => (
+          <article class="step-card reveal">
+            <div class="step-card__no num">{s.no}</div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系方式 -->
+  <section class="section section--warm" id="wechat">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-main reveal">
+          <SectionHead kicker="CONTACT" title="通过微信公众号「商盛源」联系我们" align="left" />
+          <p class="lead">商盛源的课程咨询与报名，主要通过公众号后台留言与课程助教对接。</p>
+          <div class="wechat-card">
+            <div class="wechat-card__mark" aria-hidden="true">盛</div>
+            <div class="wechat-card__info">
+              <span>微信公众号</span>
+              <strong>{site.wechat}</strong>
+              <p>在微信中搜索并关注「商盛源」，于后台留言说明团队需求；已对接课程助教的企业，可直接与助教联系。</p>
+            </div>
+            <button type="button" class="copy-btn" id="copy-wechat">复制名称</button>
+          </div>
+          <p class="contact-note">
+            官网暂不提供公开电话、邮箱与在线表单。具体班期、费用、行程明细与讲师安排，
+            均由课程助教在沟通需求后确认，请留意核对信息来源。
+          </p>
+          <div class="contact-region">
+            <span>企业所在地</span>
+            <strong>{site.region}</strong>
+            <span>所属集团</span>
+            <strong>{site.group}</strong>
+          </div>
+        </div>
+
+        <div class="contact-side reveal">
+          <div class="prepare-card">
+            <h3>咨询时请准备</h3>
+            {prepare.map((p) => (
+              <div class="prepare-item"><strong>{p.title}</strong><p>{p.body}</p></div>
+            ))}
+          </div>
+          <div class="side-image"><img src="/images/intro.webp" alt="明亮的企业会议室内摆放着资料与笔记本" loading="lazy" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 其他入口 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="EXPLORE FIRST" title="也可以先从这里了解" body="先把信息看清楚，沟通会更高效。" />
+      <div class="grid grid--3">
+        {entries.map((e) => (
+          <a class="entry-card reveal" href={e.href}>
+            <h3>{e.title}</h3>
+            <p>{e.body}</p>
+            <span class="text-link">{e.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const copyButton = document.getElementById('copy-wechat');
+  copyButton?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('商盛源');
+      copyButton.textContent = '已复制 ✓';
+    } catch {
+      copyButton.textContent = '请手动复制：商盛源';
+    }
+    window.setTimeout(() => { copyButton.textContent = '复制名称'; }, 2000);
+  });
+</script>
+
+<style>
+  .steps-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; position: relative; }
+  .steps-grid::before { content: ""; position: absolute; top: 34px; left: 8%; right: 8%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold) 12%, var(--gold) 88%, transparent); }
+  .step-card { position: relative; padding: 0 8px; }
+  .step-card__no { position: relative; z-index: 1; width: 68px; height: 68px; display: grid; place-items: center; margin-bottom: 22px; background: #fff; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold-deep); font-size: 22px; box-shadow: 0 0 0 8px #fff; }
+  .step-card h3 { font-size: 18.5px; margin-bottom: 10px; }
+  .step-card p { font-size: 14px; line-height: 1.9; }
+
+  .contact-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: start; }
+  .contact-main :global(.section-head) { margin-bottom: 20px; }
+  .wechat-card { display: flex; align-items: center; gap: 20px; margin-top: 28px; padding: 26px 28px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; box-shadow: var(--shadow-sm); }
+  .wechat-card__mark { width: 62px; height: 62px; flex: none; display: grid; place-items: center; border-radius: 12px; background: linear-gradient(145deg, #e0c48c, #c9a96e 55%, #a9823f); color: #0a1d36; font-size: 30px; font-weight: 800; }
+  .wechat-card__info { min-width: 0; }
+  .wechat-card__info > span { display: block; color: var(--ink-3); font-size: 12px; letter-spacing: .08em; }
+  .wechat-card__info strong { display: block; color: var(--navy-900); font-size: 26px; letter-spacing: .08em; margin: 2px 0 8px; }
+  .wechat-card__info p { font-size: 13.5px; line-height: 1.85; }
+  .copy-btn { flex: none; align-self: flex-start; padding: 9px 16px; border: 1px solid var(--navy-900); border-radius: 6px; background: transparent; color: var(--navy-900); font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .copy-btn:hover { background: var(--navy-900); color: #fff; }
+  .contact-note { margin-top: 22px; font-size: 13.5px; line-height: 1.95; color: var(--ink-3); }
+  .contact-region { display: grid; grid-template-columns: auto 1fr; gap: 8px 20px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; }
+  .contact-region span { color: var(--ink-3); }
+  .contact-region strong { color: var(--navy-900); }
+
+  .prepare-card { background: var(--navy-900); color: #fff; border-radius: var(--radius-lg); padding: 32px 30px 34px; }
+  .prepare-card h3 { color: #fff; font-size: 20px; margin-bottom: 20px; }
+  .prepare-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+  .prepare-item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .prepare-item strong { display: block; color: var(--gold-light); font-size: 15.5px; margin-bottom: 5px; }
+  .prepare-item p { color: rgba(255,255,255,.72); font-size: 13.5px; line-height: 1.8; }
+  .side-image { margin-top: 22px; }
+  .side-image img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+
+  .entry-card { display: block; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 28px 32px; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+  .entry-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .entry-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .entry-card p { font-size: 14.5px; line-height: 1.9; margin-bottom: 18px; }
+
+  @media (max-width: 1024px) {
+    .steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+    .steps-grid::before { display: none; }
+    .contact-grid { gap: 40px; }
+  }
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+    .contact-side { max-width: 620px; }
+  }
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: minmax(0, 1fr); }
+    .wechat-card { flex-wrap: wrap; padding: 22px; }
+    .copy-btn { align-self: auto; margin-left: 82px; }
+  }
+</style>

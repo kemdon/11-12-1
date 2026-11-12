@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="页面未找到" description="您访问的页面不存在，请返回商盛源官网首页。" noindex={true}>
+  <section class="nf">
+    <div class="container nf__inner">
+      <span class="nf__code num">404</span>
+      <h1>这个页面暂时找不到了</h1>
+      <p>您访问的链接可能已经调整。可以从首页重新出发，或直接查看课程与研学内容。</p>
+      <div class="nf__actions">
+        <a class="btn btn--navy" href="/">返回首页 →</a>
+        <a class="btn btn--line" href="/courses">查看课程中心</a>
+      </div>
+      <div class="nf__links">
+        <a href="/about">商盛源介绍</a>
+        <a href="/yanxue">胖东来研学</a>
+        <a href="/guide">研学指南</a>
+        <a href="/contact">咨询沟通</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .nf { min-height: 62vh; display: grid; place-items: center; background: var(--paper-warm); padding: 80px 0; }
+  .nf__inner { text-align: center; }
+  .nf__code { display: block; font-size: clamp(5rem, 14vw, 9rem); line-height: 1; color: var(--gold); }
+  .nf h1 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin: 10px 0 14px; }
+  .nf p { font-size: 15.5px; line-height: 1.9; max-width: 520px; margin: 0 auto; }
+  .nf__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+  .nf__links { display: flex; justify-content: center; flex-wrap: wrap; gap: 22px; margin-top: 44px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .nf__links a { font-size: 14px; color: var(--ink-3); }
+  .nf__links a:hover { color: var(--gold-deep); }
+</style>

@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { cases, voices, teacherRoles, site } from '../data/site';
+
+const photos = [
+  { src: '/images/observe.webp', alt: '参访者在卖场价签区域观察记录', label: '现场取证' },
+  { src: '/images/classroom.webp', alt: '培训教室内讲师讲解，学员记录', label: '专题授课' },
+  { src: '/images/workshop.webp', alt: '企业管理者围坐长桌做复盘共创', label: '行动共创' },
+  { src: '/images/case-team.webp', alt: '课间企业管理者在窗边交流', label: '课间交流' },
+  { src: '/images/tour.webp', alt: '参访团队沿商业步行街行走', label: '游学途中' },
+  { src: '/images/course-standard.webp', alt: '桌面上摊开的流程笔记本与便签', label: '标准拆解' },
+];
+---
+
+<Layout title="案例与师资" description="商盛源企业学习案例、学员感悟、课程带教角色与课程实拍，内容依据公众号公开资料整理。">
+
+  <PageHero
+    kicker="CASES & FACULTY"
+    title="案例与师资：真学习，真转化"
+    body="从服务升级、团队管理到文化共识，不同企业来到现场前，都有各自要解决的问题。以下内容依据商盛源公众号公开资料整理。"
+    crumb="案例与师资"
+    image="/images/case-conference.webp"
+  >
+    <a class="btn btn--gold" href="/contact">课程咨询 →</a>
+    <a class="btn btn--outline" href="#photos">查看课程实拍</a>
+  </PageHero>
+
+  <!-- 企业案例 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="LEARNING WITNESS" title="他们曾带着问题来到现场" body="以下为商盛源公众号公开简介中记载的学习见证，供相近团队规划自己的学习路径时参考。" />
+      <div class="grid grid--3">
+        {cases.map((c) => (
+          <article class="card reveal">
+            <div class="card__media"><img src={c.image} alt={c.alt} loading="lazy" /></div>
+            <div class="card__body">
+              <div class="case-top"><span class="num">{c.no}</span><span class="tag">{c.metric}</span></div>
+              <h3>{c.name}</h3>
+              <p>{c.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 学员感悟 -->
+  <section class="section section--navy">
+    <div class="container">
+      <SectionHead kicker="VOICES" title="幸福见证：学员学习感悟" body="摘自商盛源公众号公开的学习感悟，署名按原文匿名处理。" />
+      <div class="grid grid--3">
+        {voices.map((v) => (
+          <blockquote class="voice-card reveal">
+            <span class="voice-card__mark">“</span>
+            <p>{v.text}</p>
+            <cite>{v.from}</cite>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 师资力量 -->
+  <section class="section section--warm">
+    <div class="container">
+      <SectionHead kicker="FACULTY & DELIVERY" title="师资力量：一套完整交付角色" body="课程由授课、现场带看、落地带练与会务保障共同完成，具体带教安排以课程助教确认为准。" />
+      <div class="grid grid--4">
+        {teacherRoles.map((r, i) => (
+          <article class="role-card reveal">
+            <span class="role-card__no num">0{i + 1}</span>
+            <h3>{r.title}</h3>
+            <p>{r.body}</p>
+          </article>
+        ))}
+      </div>
+      <div class="faculty-note reveal">
+        <strong>关于讲师信息</strong>
+        <p>{site.fullName}官网不发布未经确认的讲师姓名、任职年限与履历。讲师背景、课程分工与带教安排，可在咨询时向课程助教了解并以最终课程方案为准。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 课程实拍 -->
+  <section class="section" id="photos">
+    <div class="container">
+      <SectionHead kicker="FROM THE FIELD" title="课程实拍" body="以下为课程与学习场景示意配图，用于说明研学、授课与复盘的常见环节。" />
+      <div class="photo-grid">
+        {photos.map((p) => (
+          <figure class="photo-card reveal">
+            <img src={p.src} alt={p.alt} loading="lazy" />
+            <figcaption>{p.label}<span>{p.alt}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="photo-note">图片为场景示意，非特定企业或特定班期的现场记录。</p>
+    </div>
+  </section>
+
+  <CtaBand title="想看看相近团队是怎么学的？" body="把你们的行业和当前问题告诉我们，先一起判断适合哪条学习路径。" secondaryLabel="查看课程中心" />
+</Layout>
+
+<style>
+  .case-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .case-top .num { font-size: 28px; color: var(--gold-light); line-height: 1; }
+  .card__body h3 { margin-bottom: 10px; }
+
+  .voice-card { position: relative; padding: 34px 28px 30px; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-lg); }
+  .voice-card__mark { display: block; font-family: var(--font-num); font-size: 52px; color: var(--gold); line-height: .8; margin-bottom: 12px; }
+  .voice-card p { color: rgba(255,255,255,.82) !important; font-size: 14.5px; line-height: 2; }
+  .voice-card cite { display: block; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.14); color: var(--gold-light); font-style: normal; font-size: 13px; }
+
+  .role-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 24px 32px; }
+  .role-card__no { display: block; font-size: 32px; color: var(--gold-light); line-height: 1; margin-bottom: 16px; }
+  .role-card h3 { font-size: 19px; margin-bottom: 10px; }
+  .role-card p { font-size: 14px; line-height: 1.9; }
+  .faculty-note { margin-top: 28px; padding: 24px 28px; background: #fff; border-left: 3px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; }
+  .faculty-note strong { display: block; color: var(--navy-900); font-size: 16px; margin-bottom: 8px; }
+  .faculty-note p { font-size: 14px; line-height: 1.9; }
+
+  .photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .photo-card { overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+  .photo-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .photo-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .photo-card figcaption { padding: 16px 20px 18px; font-size: 15px; font-weight: 700; color: var(--navy-900); }
+  .photo-card figcaption span { display: block; margin-top: 4px; font-size: 12.5px; font-weight: 400; color: var(--ink-3); line-height: 1.6; }
+  .photo-note { text-align: center; margin-top: 26px; font-size: 12.5px; color: var(--ink-3); }
+
+  @media (max-width: 1024px) {
+    .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .photo-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

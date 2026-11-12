@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { guides, faq } from '../data/site';
+
+const threeThings = [
+  { no: '01', title: '定目标', body: '把「最想解决的一个问题」写清楚，而不是「想去看看」。目标越具体，现场越容易有收获。' },
+  { no: '02', title: '分角色', body: '老板看机制、店长看标准、运营看流程。同一个现场，不同角色带着不同观察任务。' },
+  { no: '03', title: '备问题', body: '把现状、差距与困惑列成清单带去现场，让每一个细节都能对应回自己企业。' },
+];
+
+const pitfalls = [
+  { title: '只看服务细节，不看背后的标准', body: '一句「态度真好」带不回企业。要追问：这个动作由谁定义、怎么培训、如何检查、出问题谁兜底。' },
+  { title: '把别人的制度直接搬回自己公司', body: '行业、规模、顾客结构都不同。先拆方法，再按自己的业态重新组合成落地方案。' },
+  { title: '没有明确问题就出发', body: '没有问题的现场容易变成观光。出发前先把团队最想解决的事写下来，哪怕只有一条。' },
+  { title: '只派一个人去听', body: '回去推动改变的不止一个人。让关键岗位一起到场，才能形成共识与共同语言。' },
+  { title: '学完没有复盘节奏', body: '行动清单要有责任人与复盘时间，配合课后辅导，才不会「听过就忘」。' },
+];
+---
+
+<Layout title="研学指南" description="商盛源研学指南：出发前的定目标、分角色、备问题，服务与客诉、文化与管理机制、不同行业适配，以及研学避坑与常见问题。">
+
+  <PageHero
+    kicker="STUDY GUIDE"
+    title="研学指南：出发前先把问题想清楚"
+    body="研学的质量，往往在出发前就决定了。这里整理行前准备、观察重点与常见的避坑提醒，帮助团队真正有所得。"
+    crumb="研学指南"
+    image="/images/guide-desk.webp"
+  >
+    <a class="btn btn--gold" href="/contact">研学咨询 →</a>
+    <a class="btn btn--outline" href="#faq">查看常见问题</a>
+  </PageHero>
+
+  <!-- 专题指南 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="KEY QUESTIONS" title="先把企业研学的关键问题拆清楚" body="围绕研学路径、服务机制、文化管理与行业转化，帮助团队在出发前形成更清晰的学习判断。" />
+      <div class="guide-grid">
+        {guides.map((g) => (
+          <article class="guide-card reveal">
+            <div class="guide-card__head"><span class="num">{g.no}</span><span class="tag">{g.tag}</span></div>
+            <h3>{g.title}</h3>
+            <p>{g.body}</p>
+            <div class="guide-card__line"></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 行前三件事 -->
+  <section class="section section--navy">
+    <div class="container">
+      <SectionHead kicker="BEFORE YOU GO" title="第一次参加，团队要提前做哪三件事？" body="定目标、分角色、备问题——把研学从「走一圈」变成「带得走」。" />
+      <div class="grid grid--3">
+        {threeThings.map((t) => (
+          <article class="thing-card reveal">
+            <div class="thing-card__no num">{t.no}</div>
+            <h3>{t.title}</h3>
+            <p>{t.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 避坑清单 -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="pitfall-grid">
+        <div class="pitfall-text reveal">
+          <SectionHead kicker="AVOID THE PITFALLS" title="研学避坑指南" align="left" />
+          <p class="lead">看热闹很容易，把方法带回去很难。下面五件事，是出发前最值得先说清楚的。</p>
+          <a class="btn btn--navy" href="/yanxue">了解完整研学流程 →</a>
+        </div>
+        <div class="pitfall-list reveal">
+          {pitfalls.map((p, i) => (
+            <div class="pitfall-item">
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              <div><h3>{p.title}</h3><p>{p.body}</p></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHead kicker="FAQ" title="常见问题" body="报名前，先了解商盛源、课程内容、适合团队与报名方式。" />
+      <div class="faq-list">
+        {faq.map((item, i) => (
+          <details class="faq-item reveal" open={i === 0}>
+            <summary><span class="faq-item__no num">{String(i + 1).padStart(2, '0')}</span><span>{item.q}</span><span class="faq-item__icon" aria-hidden="true"></span></summary>
+            <div class="faq-item__answer"><p>{item.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="还有不确定的地方？直接问我们" body="关注微信公众号「商盛源」后台留言，或联系课程助教沟通团队需求。" primaryLabel="沟通团队需求" secondaryLabel="查看课程排期" secondaryHref="/schedule" />
+</Layout>
+
+<style>
+  .guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .guide-card { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 30px 34px; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+  .guide-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .guide-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .guide-card__head .num { font-size: 34px; color: var(--gold-light); line-height: 1; }
+  .guide-card h3 { font-size: 20px; margin-bottom: 12px; line-height: 1.55; }
+  .guide-card p { font-size: 14.5px; line-height: 1.95; }
+  .guide-card__line { position: absolute; left: 0; bottom: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); }
+
+  .thing-card { padding: 34px 28px 36px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius-lg); }
+  .thing-card__no { font-size: 46px; color: var(--gold-light); line-height: 1; margin-bottom: 18px; }
+  .thing-card h3 { color: #fff; font-size: 23px; margin-bottom: 12px; }
+  .thing-card p { color: rgba(255,255,255,.72); font-size: 14.5px; line-height: 1.95; }
+
+  .pitfall-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
+  .pitfall-text :global(.section-head) { margin-bottom: 20px; }
+  .pitfall-item { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .pitfall-item:last-child { border-bottom: 0; }
+  .pitfall-item > span { color: var(--gold-deep); font-size: 22px; flex: none; line-height: 1.4; width: 36px; }
+  .pitfall-item h3 { font-size: 17.5px; margin-bottom: 6px; }
+  .pitfall-item p { font-size: 14px; line-height: 1.85; }
+
+  .faq-list { max-width: 900px; margin: 0 auto; display: grid; gap: 12px; }
+  .faq-item { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .faq-item[open] { border-color: #d9c8a4; box-shadow: var(--shadow-sm); }
+  .faq-item summary { display: flex; align-items: center; gap: 18px; padding: 20px 24px; cursor: pointer; list-style: none; color: var(--navy-900); font-size: 16px; font-weight: 700; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item__no { color: var(--gold-deep); font-size: 17px; flex: none; }
+  .faq-item__icon { position: relative; margin-left: auto; flex: none; width: 16px; height: 16px; }
+  .faq-item__icon::before, .faq-item__icon::after { content: ""; position: absolute; left: 0; top: 7px; width: 16px; height: 2px; background: var(--gold-deep); transition: transform .3s; }
+  .faq-item__icon::after { transform: rotate(90deg); }
+  .faq-item[open] .faq-item__icon::after { transform: rotate(0); }
+  .faq-item__answer { padding: 0 24px 24px 58px; }
+  .faq-item__answer p { font-size: 14.5px; line-height: 2; }
+
+  @media (max-width: 900px) {
+    .guide-grid, .pitfall-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  }
+  @media (max-width: 600px) {
+    .faq-item summary { padding: 17px 18px; font-size: 15px; gap: 12px; }
+    .faq-item__answer { padding: 0 18px 20px 18px; }
+  }
+</style>
