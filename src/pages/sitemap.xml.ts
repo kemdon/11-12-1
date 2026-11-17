@@ -10,6 +10,8 @@ const paths = [
   '/courses',
   '/schedule',
   '/cases',
+  '/teachers',
+  '/news',
   '/guide',
   '/contact',
 ];

@@ -1,6 +1,6 @@
 /* ============================================================
    商盛源 · Design System
-   深海军蓝 + 香槟金 + 米白，系统字体，参考标杆企业站的版式节奏
+   深海军蓝 + 品牌橙棕（源自商盛源 Logo）+ 米白，系统字体，参考标杆企业站的版式节奏
    ============================================================ */
 
 :root {
@@ -9,10 +9,11 @@
   --navy-800: #123f70;
   --navy-700: #1b4a7a;
   --navy-600: #2c5c8c;
-  --gold: #c9a96e;
-  --gold-deep: #a9823f;
-  --gold-light: #e6d3ab;
-  --gold-pale: #f6f0e2;
+  --gold: #e57728;
+  --gold-deep: #b4531b;
+  --gold-light: #ffbd88;
+  --gold-pale: #fff1e7;
+  --brand-brown: #4f2a0f;
   --ink: #22303f;
   --ink-2: #445468;
   --ink-3: #6d7d90;
@@ -145,7 +146,7 @@ button { font: inherit; cursor: pointer; }
 }
 .btn svg { width: 16px; height: 16px; flex: none; }
 .btn--gold { background: var(--gold); color: var(--navy-950); border-color: var(--gold); }
-.btn--gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(201, 169, 110, .28); }
+.btn--gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(229, 119, 40, .28); }
 .btn--outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.42); }
 .btn--outline:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
 .btn--navy { background: var(--navy-900); color: #fff; border-color: var(--navy-900); }

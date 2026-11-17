@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { destinations } from '../data/site';
 
 const programs = [
   { no: '01', title: '标杆企业现场考察', body: '走进胖东来、巴奴等河南标杆企业现场，观察门店动线、服务标准与顾客体验的真实呈现。', image: '/images/tour.webp', alt: '企业参访团队沿商业步行街行走交流' },
@@ -12,7 +13,7 @@ const programs = [
 
 const flow = [
   { no: '01', title: '游学前', items: ['确认团队构成与学习目标', '分角色准备观察任务与问题清单', '由课程助教确认行程、资料与参会须知'] },
-  { no: '02', title: '现场流程', items: ['按主题走访门店动线与服务现场', '带着问题观察岗位协同与顾客体验', '结合专题交流还原做法与取舍'] },
+  { no: '02', title: '游学流程', items: ['按主题走访门店动线与服务现场', '带着问题观察岗位协同与顾客体验', '结合专题交流还原做法与取舍'] },
   { no: '03', title: '游学后复盘', items: ['团队共创行动清单与责任分工', '把现场所见对照自己企业的现状', '明确回去后的复盘方向与节奏'] },
   { no: '04', title: '组织与保障', items: ['行程组织、资料准备与现场协同', '会务团队统一保障学习秩序', '课后可衔接线上辅导与入企辅导'] },
 ];
@@ -32,23 +33,41 @@ const faqGroups = [
 ];
 ---
 
-<Layout title="游学考察" description="商盛源游学考察：走进胖东来、巴奴等河南标杆企业现场，含游学前准备、现场流程、游学后复盘与组织保障。">
+<Layout title="标杆企业研学" description="商盛源标杆企业研学：走进蜜雪冰城、郑州零售四小龙、太和文旅、好想你、巴奴，含游学前准备、游学流程、游学后复盘与组织保障。">
 
   <PageHero
-    kicker="FIELD VISIT"
-    title="游学考察：在现场建立具体判断"
-    body="适合企业团队现场观察标杆门店动线与服务标准。在看与问之间，把「好服务」从一句感受，变成可以带回去讨论的具体细节。"
-    crumb="游学考察"
+    kicker="BENCHMARK FIELD VISIT"
+    title="标杆企业研学：到现场建立具体判断"
+    body="走进蜜雪冰城、郑州零售四小龙、太和文旅、好想你、巴奴等标杆企业，看服务、看流程、看组织。在看与问之间，把「好服务」从一句感受，变成可以带回去讨论的具体细节。"
+    crumb="标杆企业研学"
     image="/images/tour.webp"
   >
     <a class="btn btn--gold" href="/contact">游学咨询 →</a>
     <a class="btn btn--outline" href="#flow">查看游学流程</a>
   </PageHero>
 
-  <!-- 游学项目 -->
+  <!-- 研学目的地 -->
   <section class="section">
     <div class="container">
-      <SectionHead kicker="PROGRAMS" title="游学项目" body="围绕不同团队的学习目标，安排不同深度的现场学习。" />
+      <SectionHead kicker="DESTINATIONS" title="研学目的地：走进这些标杆企业" body="以下为商盛源标杆企业研学涉及的目的地与学习看点；具体参访企业与行程由课程助教在确认需求后安排。" />
+      <div class="grid grid--3">
+        {destinations.map((d, i) => (
+          <article class="card reveal">
+            <div class="card__body">
+              <div class="dest-top"><span class="num">0{i + 1}</span><span class="tag tag--blue">{d.tag}</span></div>
+              <h3>{d.name}</h3>
+              <p>{d.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 游学项目 -->
+  <section class="section section--warm">
+    <div class="container">
+      <SectionHead kicker="PROGRAMS" title="研学项目" body="围绕不同团队的学习目标，安排不同深度的现场学习。" />
       <div class="grid grid--3">
         {programs.map((p) => (
           <article class="card reveal">
@@ -65,7 +84,7 @@ const faqGroups = [
   </section>
 
   <!-- 游学流程 -->
-  <section class="section section--warm" id="flow">
+  <section class="section" id="flow">
     <div class="container">
       <SectionHead kicker="HOW IT WORKS" title="游学流程：从出发到复盘" body="游学前准备、现场流程、游学后复盘，以及贯穿全程的组织与保障。" />
       <div class="flow-grid">
@@ -122,7 +141,9 @@ const faqGroups = [
 </Layout>
 
 <style>
-  .program-no { display: block; font-size: 30px; color: var(--gold-light); line-height: 1; margin-bottom: 12px; }
+  .dest-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .dest-top .num { font-size: 28px; color: var(--gold-deep); line-height: 1; }
+  .program-no { display: block; font-size: 30px; color: var(--gold-deep); line-height: 1; margin-bottom: 12px; }
   .card__body h3 { margin-bottom: 10px; }
 
   .flow-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }

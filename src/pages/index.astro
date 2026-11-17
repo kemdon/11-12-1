@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import {
-  site, stats, painPoints, methods, loopSteps, paths, courses,
-  cases, voices, timeline, news, guides, faq,
+  site, stats, serviceTypes, painPoints, methods, loopSteps, paths, courses,
+  cases, voices, timeline, news, guides, faq, teacherRoles,
 } from '../data/site';
 ---
 
@@ -27,8 +27,8 @@ import {
           <a class="btn btn--outline" href="/yanxue">了解胖东来研学</a>
         </div>
         <div class="hero__chips">
-          <span>首家组织胖东来游学</span>
-          <span>近 10 年聚焦落地</span>
+          <span>胖东来研学项目缔造企业</span>
+          <span>12450 家企业 · 87056 人走进胖东来</span>
           <span>探店四步骤 · 四步反省法 · 落地四步曲</span>
         </div>
       </div>
@@ -52,7 +52,11 @@ import {
           </div>
         ))}
       </div>
-      <p class="stats__note">数据口径：商盛源公众号公开简介及公开媒体报道整理，非实时统计。</p>
+      <div class="service-strip">
+        <span class="service-strip__label">服务类型</span>
+        {serviceTypes.map((t) => <span class="service-strip__item">{t}</span>)}
+      </div>
+      <p class="stats__note">数据口径：截至 2026 年 10 月底，商盛源累计带领 12450 家企业、87056 人走进胖东来学习。</p>
     </div>
   </section>
 
@@ -257,6 +261,30 @@ import {
     </div>
   </section>
 
+  <!-- ============ 查看讲师 ============ -->
+  <section class="section section--blue teacher-sec">
+    <div class="container">
+      <div class="split-head">
+        <SectionHead
+          kicker="YOUR FACULTY"
+          title="先看讲师怎么带，再决定怎么学"
+          body="授课、现场带看、落地带练与会务保障共同完成一次研学；讲师身份与课程分工在咨询时确认。"
+          align="left"
+        />
+        <a class="btn btn--line btn--sm" href="/teachers">查看讲师团队 →</a>
+      </div>
+      <div class="grid grid--4">
+        {teacherRoles.map((r, i) => (
+          <article class="teacher-mini reveal">
+            <span class="num">0{i + 1}</span>
+            <h3>{r.title}</h3>
+            <p>{r.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 学习感悟 ============ -->
   <section class="section section--navy voices-sec">
     <div class="container">
@@ -301,7 +329,7 @@ import {
     <div class="container">
       <div class="split-head">
         <SectionHead kicker="IN THE NEWS" title="媒体报道与行业评价" body="公开报道中关于商盛源与胖东来游学的记录。" align="left" />
-        <a class="btn btn--line btn--sm" href="/about">查看商盛源介绍 →</a>
+        <a class="btn btn--line btn--sm" href="/news">查看研学动态 →</a>
       </div>
       <div class="grid grid--3">
         {news.map((item) => (
@@ -429,7 +457,14 @@ import {
   .stat__value { color: var(--gold-light); font-size: clamp(2rem, 3.4vw, 2.85rem); line-height: 1.1; }
   .stat__label { color: #fff; font-size: 14.5px; font-weight: 600; margin-top: 10px; }
   .stat__detail { color: rgba(255,255,255,.55); font-size: 12.5px; margin-top: 4px; line-height: 1.7; }
-  .stats__note { text-align: right; color: rgba(255,255,255,.42); font-size: 11.5px; margin-top: 26px; }
+  .stats__note { text-align: right; color: rgba(255,255,255,.42); font-size: 11.5px; margin-top: 12px; }
+  .service-strip {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-top: 26px; padding: 16px 20px;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(229,119,40,.3); border-radius: var(--radius);
+  }
+  .service-strip__label { color: var(--gold-light); font-size: 13px; font-weight: 700; margin-right: 4px; }
+  .service-strip__item { padding: 5px 14px; border-radius: 100px; background: rgba(255,255,255,.1); color: #fff; font-size: 13px; }
 
   /* ---------- Intro ---------- */
   .intro__grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 72px; align-items: center; }
@@ -550,6 +585,12 @@ import {
   .case-card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
   .case-card__top .num { font-size: 28px; color: var(--gold-light); line-height: 1; }
 
+  /* ---------- Teacher mini ---------- */
+  .teacher-mini { background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: var(--radius-lg); padding: 26px 22px 28px; }
+  .teacher-mini .num { font-size: 26px; color: var(--gold-deep); line-height: 1; }
+  .teacher-mini h3 { font-size: 17px; margin: 12px 0 8px; }
+  .teacher-mini p { font-size: 13.5px; line-height: 1.85; }
+
   /* ---------- Voices ---------- */
   .voice-card {
     position: relative;
@@ -599,7 +640,7 @@ import {
   /* ---------- FAQ ---------- */
   .faq__list { max-width: 900px; margin: 0 auto; display: grid; gap: 12px; }
   .faq-item { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-  .faq-item[open] { border-color: #d9c8a4; box-shadow: var(--shadow-sm); }
+  .faq-item[open] { border-color: #f0c4a6; box-shadow: var(--shadow-sm); }
   .faq-item summary {
     display: flex; align-items: center; gap: 18px;
     padding: 20px 24px; cursor: pointer; list-style: none;

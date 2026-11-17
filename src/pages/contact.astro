@@ -22,7 +22,7 @@ const entries = [
   <PageHero
     kicker="GET IN TOUCH"
     title="先确认你的团队适合哪种方案"
-    body="提交团队人数、行业和当前最想解决的问题，我们先一起判断适合研学、游学考察，还是落地课与定制课程。"
+    body="提交团队人数、行业和当前最想解决的问题，我们先一起判断适合胖东来研学、标杆企业研学，还是落地课与定制课程。"
     crumb="咨询沟通"
     image="/images/cta-wide.webp"
   >
@@ -54,7 +54,7 @@ const entries = [
           <SectionHead kicker="CONTACT" title="通过微信公众号「商盛源」联系我们" align="left" />
           <p class="lead">商盛源的课程咨询与报名，主要通过公众号后台留言与课程助教对接。</p>
           <div class="wechat-card">
-            <div class="wechat-card__mark" aria-hidden="true">盛</div>
+            <img class="wechat-card__logo" src="/images/logo.webp" alt="商盛源 Logo" width="64" height="64" />
             <div class="wechat-card__info">
               <span>微信公众号</span>
               <strong>{site.wechat}</strong>
@@ -128,7 +128,7 @@ const entries = [
   .contact-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: start; }
   .contact-main :global(.section-head) { margin-bottom: 20px; }
   .wechat-card { display: flex; align-items: center; gap: 20px; margin-top: 28px; padding: 26px 28px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; box-shadow: var(--shadow-sm); }
-  .wechat-card__mark { width: 62px; height: 62px; flex: none; display: grid; place-items: center; border-radius: 12px; background: linear-gradient(145deg, #e0c48c, #c9a96e 55%, #a9823f); color: #0a1d36; font-size: 30px; font-weight: 800; }
+  .wechat-card__logo { width: 64px; height: 64px; flex: none; object-fit: contain; }
   .wechat-card__info { min-width: 0; }
   .wechat-card__info > span { display: block; color: var(--ink-3); font-size: 12px; letter-spacing: .08em; }
   .wechat-card__info strong { display: block; color: var(--navy-900); font-size: 26px; letter-spacing: .08em; margin: 2px 0 8px; }

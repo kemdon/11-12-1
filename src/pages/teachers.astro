@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, teacherRoles, teacherMatchSteps, courseTracks } from '../data/site';
+---
+
+<Layout title="讲师团队" description="商盛源讲师团队：授课、现场带看、落地带练、会务保障四类交付角色，讲师身份确认与课程匹配流程说明。">
+
+  <PageHero
+    kicker="FACULTY & DELIVERY"
+    title="讲师团队：谁带你学，比去哪儿学更重要"
+    body="一次完整的研学，由课程授课、现场带看、落地带练与会务保障共同完成。讲师身份与课程分工在咨询时确认，以最终课程方案为准。"
+    crumb="讲师团队"
+    image="/images/classroom.webp"
+  >
+    <a class="btn btn--gold" href="/contact">课程咨询 →</a>
+    <a class="btn btn--outline" href="#match">查看匹配流程</a>
+  </PageHero>
+
+  <!-- 交付角色 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="FOUR ROLES" title="一套完整的交付角色" body="不是一位讲师讲完全程，而是不同角色在课前、现场与课后各自负责，形成学习闭环。" />
+      <div class="grid grid--4">
+        {teacherRoles.map((r, i) => (
+          <article class="role-card reveal">
+            <span class="num">0{i + 1}</span>
+            <h3>{r.title}</h3>
+            <p>{r.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 讲师身份确认与课程匹配 -->
+  <section class="section section--warm" id="match">
+    <div class="container">
+      <SectionHead kicker="COURSE MATCHING" title="讲师身份确认与课程匹配" body="先确认学习目标，再确认由谁带、带什么、怎么带，避免课程与团队问题错位。" />
+      <div class="match-grid">
+        {teacherMatchSteps.map((s) => (
+          <article class="match-card reveal">
+            <div class="match-card__no num">{s.no}</div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </article>
+        ))}
+      </div>
+      <div class="match-note reveal">
+        <strong>关于讲师信息</strong>
+        <p>{site.fullName}官网不发布未经确认的讲师姓名、任职年限与履历。讲师背景、课程分工与带教安排，可在咨询时向课程助教了解并以最终课程方案为准。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 课程类型匹配 -->
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="TRACKS" title="按学习阶段匹配课程类型" body="初学、复训、落地实操与内训，对应不同的课程组合与带教深度。" />
+      <div class="grid grid--4">
+        {courseTracks.map((t, i) => (
+          <article class="track-card reveal">
+            <span class="num">0{i + 1}</span>
+            <h3>{t.name}</h3>
+            <p>{t.desc}</p>
+          </article>
+        ))}
+      </div>
+      <div class="center-link"><a class="btn btn--navy" href="/courses">查看课程中心 →</a></div>
+    </div>
+  </section>
+
+  <CtaBand title="告诉我们团队的问题，我们来匹配讲师与课程" body="说明团队人数、行业与当前最想解决的经营问题，课程助教会给出对应的带教安排建议。" secondaryLabel="查看研学案例" secondaryHref="/cases" />
+</Layout>
+
+<style>
+  .role-card { background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: var(--radius-lg); padding: 32px 24px 34px; }
+  .role-card .num { font-size: 34px; color: var(--gold-deep); line-height: 1; }
+  .role-card h3 { font-size: 19px; margin: 16px 0 10px; }
+  .role-card p { font-size: 14px; line-height: 1.9; }
+
+  .match-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .match-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 24px 32px; }
+  .match-card::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-pale)); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .match-card__no { font-size: 32px; color: var(--gold-deep); line-height: 1; margin-bottom: 14px; }
+  .match-card h3 { font-size: 19px; margin-bottom: 12px; }
+  .match-card p { font-size: 14px; line-height: 1.9; }
+  .match-note { margin-top: 28px; padding: 24px 28px; background: #fff; border-left: 3px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; }
+  .match-note strong { display: block; color: var(--navy-900); font-size: 16px; margin-bottom: 8px; }
+  .match-note p { font-size: 14px; line-height: 1.9; }
+
+  .track-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 24px 30px; }
+  .track-card .num { font-size: 30px; color: var(--gold-deep); line-height: 1; }
+  .track-card h3 { font-size: 19px; margin: 14px 0 10px; }
+  .track-card p { font-size: 14px; line-height: 1.9; }
+  .center-link { text-align: center; margin-top: 36px; }
+
+  @media (max-width: 1024px) {
+    .match-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .match-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, stats, timeline, news } from '../data/site';
+import { site, stats, serviceTypes, timeline, news } from '../data/site';
 ---
 
 <Layout title="商盛源介绍" description={`${site.fullName}隶属${site.group}，2016 年启动胖东来游学项目，近 10 年聚焦落地，形成游学课、落地课、进阶课、主题课完整课程体系。`}>
@@ -57,7 +57,7 @@ import { site, stats, timeline, news } from '../data/site';
   <!-- 数据介绍 -->
   <section class="section section--navy data-sec">
     <div class="container">
-      <SectionHead kicker="DATA PROOF" title="用公开记录说明我们走过的路" body="以下数据来自商盛源公众号公开简介与公开媒体报道，非实时统计。" />
+      <SectionHead kicker="DATA PROOF" title="截至 2026 年 10 月底的公开数据" body="商盛源累计带领 12450 家企业、87056 人走进胖东来，学习胖东来。" />
       <div class="data-grid">
         {stats.map((item) => (
           <div class="data-item reveal">
@@ -66,6 +66,10 @@ import { site, stats, timeline, news } from '../data/site';
             <div class="data-item__detail">{item.detail}</div>
           </div>
         ))}
+      </div>
+      <div class="service-list">
+        <span>服务类型</span>
+        {serviceTypes.map((t) => <em>{t}</em>)}
       </div>
     </div>
   </section>
@@ -132,6 +136,9 @@ import { site, stats, timeline, news } from '../data/site';
   .data-item__value { color: var(--gold-light); font-size: clamp(1.9rem, 3vw, 2.5rem); line-height: 1.1; }
   .data-item__label { color: #fff; font-size: 14.5px; font-weight: 600; margin-top: 12px; }
   .data-item__detail { color: rgba(255,255,255,.58); font-size: 12.5px; margin-top: 6px; line-height: 1.7; }
+  .service-list { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 30px; }
+  .service-list > span { color: var(--gold-light); font-size: 13px; font-weight: 700; margin-right: 4px; }
+  .service-list em { font-style: normal; font-size: 13.5px; color: #fff; padding: 6px 16px; border-radius: 100px; background: rgba(255,255,255,.1); border: 1px solid rgba(229,119,40,.3); }
 
   .timeline { position: relative; max-width: 900px; margin: 0 auto; }
   .timeline::before { content: ""; position: absolute; left: 172px; top: 12px; bottom: 12px; width: 1px; background: linear-gradient(180deg, var(--gold), var(--line)); }

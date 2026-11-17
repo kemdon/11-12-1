@@ -3,11 +3,14 @@ import { site, navItems } from '../data/site';
 
 const year = new Date().getFullYear();
 const quickLinks = [
+  { label: '胖东来研学', href: '/yanxue' },
+  { label: '标杆企业研学', href: '/youxue' },
   { label: '课程中心', href: '/courses' },
   { label: '课程排期', href: '/schedule' },
-  { label: '案例与师资', href: '/cases' },
+  { label: '研学案例', href: '/cases' },
+  { label: '讲师团队', href: '/teachers' },
+  { label: '研学动态', href: '/news' },
   { label: '研学指南', href: '/guide' },
-  { label: '沟通团队需求', href: '/contact' },
 ];
 ---
 
@@ -16,10 +19,10 @@ const quickLinks = [
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">
-          <span class="footer-mark" aria-hidden="true">盛</span>
+          <span class="footer-logo-chip"><img src="/images/logo.webp" alt="商盛源 Logo" width="54" height="54" loading="lazy" /></span>
           <div>
             <strong>{site.name}</strong>
-            <small>SHANGSHENGYUAN · 真落地</small>
+            <small>{site.tagline}</small>
           </div>
         </div>
         <p>{site.description}</p>
@@ -29,7 +32,7 @@ const quickLinks = [
       <div class="footer-col">
         <h4>网站导航</h4>
         <ul>
-          {navItems.slice(0, 5).map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          {navItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
         </ul>
       </div>
 
@@ -62,6 +65,7 @@ const quickLinks = [
     color: rgba(255, 255, 255, .7);
     border-top: 3px solid var(--gold);
     padding-top: 68px;
+    background-image: radial-gradient(circle at 8% 0%, rgba(229,119,40,.1), transparent 34%);
   }
 
   .footer-grid {
@@ -72,15 +76,18 @@ const quickLinks = [
   }
 
   .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-  .footer-mark {
-    width: 42px; height: 42px;
+  .footer-logo-chip {
+    width: 60px; height: 60px;
     display: grid; place-items: center;
-    border-radius: 7px;
-    background: linear-gradient(145deg, #e0c48c, #c9a96e 55%, #a9823f);
-    color: #0a1d36; font-size: 22px; font-weight: 800;
+    border-radius: 8px;
+    background: #fff8f2;
+    border: 1px solid rgba(229,119,40,.4);
+    padding: 4px;
+    flex: none;
   }
+  .footer-logo-chip img { width: 100%; height: 100%; object-fit: contain; }
   .footer-logo strong { display: block; color: #fff; font-size: 21px; letter-spacing: .1em; line-height: 1.2; }
-  .footer-logo small { display: block; color: var(--gold-light); font-size: 10.5px; letter-spacing: .1em; margin-top: 3px; }
+  .footer-logo small { display: block; color: var(--gold-light); font-size: 10.5px; letter-spacing: .04em; margin-top: 4px; }
 
   .footer-brand p { font-size: 14px; line-height: 1.95; color: rgba(255,255,255,.62); max-width: 420px; }
   .footer-belief {
