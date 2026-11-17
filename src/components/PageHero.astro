@@ -25,7 +25,7 @@ const { kicker, title, body, crumb, image } = Astro.props;
   .page-hero {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(125deg, #0a1d36 0%, #123f70 62%, #1b4a7a 100%);
+    background: linear-gradient(125deg, #5a2408 0%, #c2561a 62%, #e57728 100%);
     padding: 64px 0 72px;
   }
   .page-hero::before {
@@ -47,7 +47,7 @@ const { kicker, title, body, crumb, image } = Astro.props;
   .page-hero__shade {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(10,29,54,.94) 0%, rgba(10,29,54,.76) 48%, rgba(10,29,54,.35) 100%);
+    background: linear-gradient(90deg, rgba(90,36,8,.92) 0%, rgba(90,36,8,.74) 48%, rgba(90,36,8,.34) 100%);
   }
   .page-hero__inner { position: relative; z-index: 1; }
   .page-hero__kicker {
@@ -77,6 +77,6 @@ const { kicker, title, body, crumb, image } = Astro.props;
   @media (max-width: 768px) {
     .page-hero { padding: 42px 0 52px; }
     .page-hero p { font-size: 15px; }
-    .page-hero__shade { background: linear-gradient(90deg, rgba(10,29,54,.9), rgba(10,29,54,.72)); }
+    .page-hero__shade { background: linear-gradient(90deg, rgba(90,36,8,.9), rgba(90,36,8,.72)); }
   }
 </style>

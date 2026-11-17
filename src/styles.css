@@ -1,29 +1,33 @@
 /* ============================================================
    商盛源 · Design System
-   深海军蓝 + 品牌橙棕（源自商盛源 Logo）+ 米白，系统字体，参考标杆企业站的版式节奏
+   品牌橙（源自商盛源 Logo）为主色：深橙棕做深色区块，亮橙做强调，
+   暖米白做浅色底，系统字体，参考标杆企业站的版式节奏
    ============================================================ */
 
 :root {
-  --navy-950: #0a1d36;
-  --navy-900: #0e2c4d;
-  --navy-800: #123f70;
-  --navy-700: #1b4a7a;
-  --navy-600: #2c5c8c;
+  /* 深色区块 / 标题主色：由深到浅的橙棕阶梯 */
+  --navy-950: #5a2408;
+  --navy-900: #9c3f10;
+  --navy-800: #c2561a;
+  --navy-700: #dc6a20;
+  --navy-600: #e57728;
+  /* 品牌强调橙 */
   --gold: #e57728;
   --gold-deep: #b4531b;
   --gold-light: #ffbd88;
   --gold-pale: #fff1e7;
   --brand-brown: #4f2a0f;
-  --ink: #22303f;
-  --ink-2: #445468;
-  --ink-3: #6d7d90;
+  /* 暖色中性文字 */
+  --ink: #2f2a25;
+  --ink-2: #574c42;
+  --ink-3: #7d7064;
   --paper: #ffffff;
-  --paper-warm: #f7f5f0;
-  --paper-blue: #f2f6fa;
-  --line: #e4e9f0;
+  --paper-warm: #fff8f3;
+  --paper-blue: #fff5ee;
+  --line: #ece3da;
   --line-dark: rgba(255, 255, 255, 0.16);
-  --shadow-sm: 0 4px 20px rgba(14, 44, 77, 0.06);
-  --shadow-md: 0 16px 44px rgba(14, 44, 77, 0.11);
+  --shadow-sm: 0 4px 20px rgba(90, 36, 8, 0.07);
+  --shadow-md: 0 16px 44px rgba(90, 36, 8, 0.13);
   --radius: 8px;
   --radius-lg: 14px;
   --container: 1200px;
@@ -150,7 +154,7 @@ button { font: inherit; cursor: pointer; }
 .btn--outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.42); }
 .btn--outline:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
 .btn--navy { background: var(--navy-900); color: #fff; border-color: var(--navy-900); }
-.btn--navy:hover { background: var(--navy-700); border-color: var(--navy-700); transform: translateY(-2px); }
+.btn--navy:hover { background: var(--gold); color: var(--navy-950); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(229, 119, 40, .26); }
 .btn--line { background: transparent; color: var(--navy-900); border-color: var(--line); }
 .btn--line:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
 .btn--sm { min-height: 42px; padding: 0 20px; font-size: 14px; }
@@ -174,7 +178,7 @@ button { font: inherit; cursor: pointer; }
   overflow: hidden;
   transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
 }
-.card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: #d6dfeb; }
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: #eac6a8; }
 .card__media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-blue); }
 .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
 .card:hover .card__media img { transform: scale(1.05); }
@@ -193,7 +197,7 @@ button { font: inherit; cursor: pointer; }
   font-weight: 700;
   letter-spacing: .04em;
 }
-.tag--blue { background: #e8f0f8; color: var(--navy-700); }
+.tag--blue { background: #fff2e4; color: var(--navy-800); }
 
 .num { font-family: var(--font-num); font-weight: 400; letter-spacing: -.02em; }
 .divider-gold { width: 44px; height: 2px; background: var(--gold); border: 0; }
